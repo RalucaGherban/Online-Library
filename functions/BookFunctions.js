@@ -1,4 +1,4 @@
-import { db } from './Firebase_Config';
+import {db} from "../src/Firebase_Config.js";
 
 export const addBook = async (title, author, category, availability, borrowPeriod) => {
     try {
@@ -7,7 +7,7 @@ export const addBook = async (title, author, category, availability, borrowPerio
         author: author,
         category: category,
         availability: availability,
-        borrowPeriod: borrowPeriod
+        borrowPeriod: borrowPeriod,
     });
 
     console.log ('Book added with ID: ', docRef.id);
@@ -26,6 +26,6 @@ export const borrowBook = async (bookId, bookName, userId, borrowPeriod) => {
 
         console.log ('"${bookName}" borrowed successfully.');
     } catch (error){
-        console.error ('Failed to borrow the book: ', error.message);
+        console.error ("Failed to borrow the book: ", error.message);
     }
 };
