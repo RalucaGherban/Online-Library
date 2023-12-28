@@ -1,4 +1,4 @@
-import { addBook, borrowBook } from '../components/BookFunctions.js';
+import { addBook} from '../functions/BookFunctions.js';
 
 const main = async () => {
   await addBook('The Great Gatsby', 'F. Scott Fitzgerald', 'Fiction', true, 14);
