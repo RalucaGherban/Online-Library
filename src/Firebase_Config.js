@@ -5,7 +5,7 @@ import 'firebase/firestore';
 const firebaseConfigure = {
     apiKey: 'AIzaSyCUUhQTYn-TskOefWIN9_kiuctfBN3L550',
     authDomain: 'onlinelibrary-10fab.firebaseapp.com',
-    projectID: 'onlinelibrary-10fab',
+    projectId: 'onlinelibrary-10fab',
 };
 
 firebase.initializeApp(firebaseConfigure);
