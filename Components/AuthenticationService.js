@@ -17,3 +17,20 @@ export const signOutEmail = async () => {
         console.error ('Error signing out: ', error.message);
     }
 };
+
+export const signInWithGoogle = async (email, password) => {
+    try {
+        await auth.signInWithEmail(email, password);
+        console.log('Signed in successfully.');
+    }catch (error){
+        console.error ('Error signing in: ', error.message);
+    }
+};
+
+export const signOutGoogle = async() => {
+    try {
+        await auth.signOut('Signed out.');
+    }catch(error){
+        console.error ('Error signing out: ', error.message);
+    }
+};
