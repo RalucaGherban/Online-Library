@@ -1,34 +1,49 @@
-import {db} from "../src/Firebase_Config.js";
+import { getDatabase, ref, push, update, get, child } from 'firebase/database';
 
-export const addBook = async (title, author, category, availability, borrowPeriod) => {
+const clearString = (string) => {
+    return string.replace(/[.,@#$[\]/]/g, '');
+};
+
+export const addBook = async (bookId, title, author, category, availability, borrowPeriod) => {
     try {
-        const booksRef = db.ref('books');  // Get a reference to the "books" node
-        const newBookRef = booksRef.push();
+        const clearedTitle = clearString(title);
+        const database = getDatabase();
+        const booksRef = ref(database, 'Books'); 
+        const newBookRef = push(booksRef);
+        const bookRef = ref(getDatabase(), `Books`);
+        const bookSnapshot = await get((bookRef));
 
-        await newBookRef.set({
-        title: title,
-        author: author,
-        category: category,
-        availability: availability,
-        borrowPeriod: borrowPeriod,
-    });
+        if (bookSnapshot.exists()) {
+            console.log('Book already exists.');
+            return;
+        }
 
-    console.log ('Book added with ID: ', docRef.id);
-    }catch (error){
+        await update(newBookRef, {
+            title: title,
+            author: author,
+            category: category,
+            availability: availability,
+            borrowPeriod: borrowPeriod,
+        });
+
+        console.log('Book added with ID: ', newBookRef.key);
+    } catch (error) {
         console.error('Error adding book: ', error.message);
     }
 };
 
-export const borrowBook = async (bookId, bookName, userId, borrowPeriod) => {
+export const borrowBook = async (bookId, userId, borrowPeriod) => {
     try {
-        await db.ref ('books').child(bookId).update({
+        const database = getDatabase();
+        const booksRef = ref(database, 'books');
+        await update(booksRef.child(bookId), { 
             availability: false,
             borrowedBy: userId,
             borrowPeriod: borrowPeriod,
         });
 
-        console.log ('"${bookName}" borrowed successfully.');
-    } catch (error){
-        console.error ("Failed to borrow the book: ", error.message);
+        console.log('"${bookName}" borrowed successfully.');
+    } catch (error) {
+        console.error("Failed to borrow the book: ", error.message);
     }
 };

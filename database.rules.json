@@ -1,21 +1,7 @@
 {
   "rules": {
-    ".read": "auth != null",
-    ".write": "auth != null && root.child('admins').child(auth.uid).exists()",
-    "admins": {
-      ".read": "auth != null",
-      ".write": "auth != null && root.child('admins').child(auth.uid).exists()"
-    },
-    "data": {
-      ".read": "auth != null",
-      ".write": "auth != null && root.child('admins').child(auth.uid).exists()"
-    }
-  }
-}
-{
-  "admins": {
-    "adminUserId1": true,
-    "adminUserId2": true
+    ".read": true,
+    ".write": true
   }
 }
 

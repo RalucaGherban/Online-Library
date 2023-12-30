@@ -1,10 +1,8 @@
-import firebase from 'firebase/app';
-import "firebase/auth";
-import 'firebase/database';
-import admin from 'firebase-admin';
-import serviceAccount from '../AuthenticationServiceAccount';
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
+import { initializeApp } from 'firebase/app';
+import { getAuth } from 'firebase/auth';
+import { getDatabase } from 'firebase/database';
+import { getStorage } from 'firebase/storage';
+import { getAnalytics } from 'firebase/analytics';
 
 const firebaseConfig = {
   apiKey: "AIzaSyCUUhQTYn-TskOefWIN9_kiuctfBN3L550",
@@ -16,23 +14,14 @@ const firebaseConfig = {
   appId: "1:1031850424810:web:022e346eb89c09f0de5a93",
   measurementId: "G-D9HWQP3WMW"
 };
-
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+let analytics;
+if (typeof window !== 'undefined') {
+  analytics = getAnalytics(app);
+} 
 
-export { app, analytics };
-
-export const db = firebase.database();
-export const auth = firebase.auth();
-export const storage = firebase.storage();
-export const functions = firebase.functions();
-
-admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount),
-  databaseURL: 'https://onlinelibrary-10fab.firebaseio.com',
-});
-
-const db_admin = admin.database();
-
-export { db_admin };
-
+export { analytics };
+export { getAuth };
+export { getDatabase };
+export { getStorage };
+export {initializeApp};
