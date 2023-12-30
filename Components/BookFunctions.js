@@ -2,7 +2,10 @@ import {db} from "../src/Firebase_Config.js";
 
 export const addBook = async (title, author, category, availability, borrowPeriod) => {
     try {
-        const docRef = await db.collection ('books').add({
+        const booksRef = db.ref('books');  // Get a reference to the "books" node
+        const newBookRef = booksRef.push();
+
+        await newBookRef.set({
         title: title,
         author: author,
         category: category,
@@ -18,7 +21,7 @@ export const addBook = async (title, author, category, availability, borrowPerio
 
 export const borrowBook = async (bookId, bookName, userId, borrowPeriod) => {
     try {
-        await db.collection ('books').doc(bookId).update({
+        await db.ref ('books').child(bookId).update({
             availability: false,
             borrowedBy: userId,
             borrowPeriod: borrowPeriod,

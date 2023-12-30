@@ -1,6 +1,6 @@
 import firebase from 'firebase/app';
 import "firebase/auth";
-import 'firebase/firestore';
+import 'firebase/database';
 import admin from 'firebase-admin';
 import serviceAccount from '../AuthenticationServiceAccount';
 import { initializeApp } from "firebase/app";
@@ -22,7 +22,7 @@ const analytics = getAnalytics(app);
 
 export { app, analytics };
 
-export const db = firebase.firestore();
+export const db = firebase.database();
 export const auth = firebase.auth();
 export const storage = firebase.storage();
 export const functions = firebase.functions();
