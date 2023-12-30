@@ -1,7 +1,7 @@
 import { addBook} from './Components/BookFunctions.js';
 
 const main = async () => {
-  await addBook('The Great Gatsby', 'F. Scott Fitzgerald', 'Fiction', true, 14);
+  addBook('The Great Gatsby', 'F. Scott Fitzgerald', 'Fiction', true, null);
 
   // Retrieve the book you just added (you might need the document ID)
   // For simplicity, let's assume you know the document ID
