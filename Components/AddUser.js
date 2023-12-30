@@ -1,16 +1,30 @@
-import {db} from '../Firebase_Config.js';
+import { getDatabase, ref, push, get } from 'firebase/database';
 
-export const addUser = async (userId, username, email, favoriteCategory) => {
-    try{
-        await db.ref('users').child(userId).set({
+const clearString = (string) => {
+    return string.replace(/[,@.#$[\]/]/g, '');
+};
+
+export const addUser = async (userId, username, email, favoriteCategory, userRole) => {
+    try {
+        const clearedEmail = clearString(email);
+        const usersRef = ref(getDatabase(), 'users');
+        const userSnapshot = await get(usersRef);
+
+        if (userSnapshot.exists()) {
+            console.log('User already exists.');
+            return;
+        }
+
+        await push(ref(getDatabase(), 'users'), {
+            userId: userId,
             username: username,
             email: email,
             favoriteCategory: favoriteCategory,
-    });
-        console.log ('User added successfully.');
-    } catch (error){
-        console.error ('Error adding user: ', error.message);
+            userRole: userRole,
+        });
+
+        console.log('User added successfully.');
+    } catch (error) {
+        console.error('Error adding user: ', error.message);
     }
 };
-
-addUser('user1', 'john_doe', 'john@example.com', 'Adventure');

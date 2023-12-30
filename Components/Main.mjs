@@ -1,15 +1,11 @@
-import { addBook} from './Components/BookFunctions.js';
+import { addBook } from './BookFunctions.js';
+import { addUser } from './AddUser.js';
+import { initializeApp } from '../Firebase_Config.js';
 
 const main = async () => {
   addBook('The Great Gatsby', 'F. Scott Fitzgerald', 'Fiction', true, null);
-
-  // Retrieve the book you just added (you might need the document ID)
-  // For simplicity, let's assume you know the document ID
-  //const bookId = 'your_document_id_here';
-
-  // Borrow the book
-  //await borrowBook(bookId, 'The Great Gatsby', 'user123', 14);
+  addUser('user1', 'john_doe', 'john@example.com', 'Adventure', 'admin');
+  addUser('user2', 'jane_doe', 'jane@example.com', 'Adventure', 'admin');
 };
 
-// Run the main function
 main();
