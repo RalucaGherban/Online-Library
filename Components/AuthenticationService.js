@@ -1,15 +1,16 @@
-import { auth } from './Firebase_Config';
+import { auth } from '../Firebase_Config.js'
+import { signInWithEmailAndPassword as signInWithEmailAndPasswordFirebase } from 'firebase/auth';
 
-export const signInWithEmail = async (email, password) => {
+export const signInWithEmailAndPassword = async (email, password) => {
     try {
-        await auth.signInWithEmailAndPassword(email, password);
+        await signInWithEmailAndPasswordFirebase(auth, email, password);
         console.log('Signed in successfully.');
     } catch (error){
         console.error ('Error signing in: ', error.message);
     }
 };
 
-export const signOutEmail = async () => {
+export const signOut = async () => {
     try {
         await auth.signOut();
         console.log('Signed out successfully.');
@@ -20,7 +21,7 @@ export const signOutEmail = async () => {
 
 export const signInWithGoogle = async (email, password) => {
     try {
-        await auth.signInWithEmail(email, password);
+        await auth.signInWithGoogle(email, password);
         console.log('Signed in successfully.');
     }catch (error){
         console.error ('Error signing in: ', error.message);
@@ -29,8 +30,10 @@ export const signInWithGoogle = async (email, password) => {
 
 export const signOutGoogle = async() => {
     try {
-        await auth.signOut('Signed out.');
+        await auth.signOutGoogle('Signed out.');
     }catch(error){
         console.error ('Error signing out: ', error.message);
     }
 };
+
+export {auth};
