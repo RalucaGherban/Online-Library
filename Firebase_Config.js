@@ -20,8 +20,12 @@ if (typeof window !== 'undefined') {
   analytics = getAnalytics(app);
 } 
 
+const auth = getAuth();
+const storage = getStorage();
+
 export { analytics };
-export { getAuth };
+export { auth };
+export { storage };
 export { getDatabase };
 export { getStorage };
 export {initializeApp};
