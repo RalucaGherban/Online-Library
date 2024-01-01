@@ -1,4 +1,4 @@
-import { getDatabase, ref, push, get } from 'firebase/database';
+import { getDatabase, ref, get, query, orderByChild, equalTo, set } from 'firebase/database';
 
 const clearString = (string) => {
     return string.replace(/[,@.#$[\]/]/g, '');
@@ -8,14 +8,19 @@ export const addUser = async (userId, username, email, password, favoriteCategor
     try {
         const clearedEmail = clearString(email);
         const usersRef = ref(getDatabase(), 'users');
-        const userSnapshot = await get(usersRef);
+        
+        const emailQuery = query(usersRef, orderByChild('email').equalTo(email));
+        const emailSnapshot = await get(emailQuery);
 
-        if (userSnapshot.exists()) {
-            console.log('User already exists.');
+        if (emailSnapshot.exists()) {
+            console.log('User with the same email already exists.');
             return;
         }
+        
+        const newUserRef = push(usersRef);
+        const newUserId = newUserRef.key;
 
-        await push(ref(getDatabase(), 'users'), {
+        await set(newUserId, {
             userId: userId,
             username: username,
             email: email,
