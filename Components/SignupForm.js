@@ -1,5 +1,5 @@
-const handleSignup = async (name, email, password, favoriteGenre) => {
-    try {
+export const handleSignup = async (name, email, password, favoriteGenre) => {
+        try {
         await createAccountWithEmailAndPassword(email, password, name, favoriteGenre);
 
         console.log('User signed up successfully.');
@@ -7,7 +7,6 @@ const handleSignup = async (name, email, password, favoriteGenre) => {
         console.error('Error creating account:', error.message);
     }
 };
-
 const signupForm = document.getElementById('signup-form');
 
 if (signupForm) {
@@ -23,4 +22,4 @@ if (signupForm) {
     });
 } else {
     console.error('Signup form not found.');
-}
+};

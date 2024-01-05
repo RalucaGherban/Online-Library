@@ -6,7 +6,7 @@
     "serve": "firebase emulators:start --only functions",
     "shell": "firebase functions:shell",
     "predeploy": "npm run lint",
-    "start": "node Main.mjs",
+    "start": "node Main.js",
     "deploy": "firebase deploy --only functions",
     "logs": "firebase functions:log"
   },
