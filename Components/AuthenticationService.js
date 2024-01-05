@@ -36,4 +36,9 @@ export const signOutGoogle = async() => {
     }
 };
 
+export const addUserToDatabase = (uid, userData) => {
+    const userRef = ref(database, `users/${uid}`);
+    set(userRef, userData);
+};
+
 export {auth};
