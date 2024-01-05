@@ -5,6 +5,15 @@ import { Book } from '../../shared/models/books';
   providedIn: 'root'
 })
 export class BookService {
+  getAllBopksByTag(tag: any): import("../../../../../src/app/shared/models/book").Book[] {
+    throw new Error('Method not implemented.');
+  }
+  getAllBooksBySearch(searchTerm: any): import("../../../../../src/app/shared/models/book").Book[] {
+    throw new Error('Method not implemented.');
+  }
+  getBookById(id: any): import("../../../../../src/app/shared/models/book").Book {
+    throw new Error('Method not implemented.');
+  }
 
   constructor() { }
 

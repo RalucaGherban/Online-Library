@@ -29,4 +29,8 @@ export class BookService {
     this.getAll().filter(book => book.type?.includes(tag));
   }
 
+  getBookById(bookId:number):Book{
+    return this.getAll().find(book => book.id == bookId) ?? new Book();
+  }
+
 }
