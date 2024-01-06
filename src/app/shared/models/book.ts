@@ -3,7 +3,7 @@ export class Book{
     name!:string;
     author!:string;
     period!:number;
-    price?:number;
+    price!:number;
     favourite!:boolean;
     
     imageUrl!:string;
