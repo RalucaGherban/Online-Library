@@ -1,0 +1,15 @@
+<ul>
+    <li *ngFor="let book of books">
+        <a>
+             <img src="{{book.imageUrl}}" alt="">
+             <div class="content">
+                <div class="name">
+                    {{book.name}}
+                </div>
+                <span class="favourite">
+                    ❤
+                </span>
+             </div>
+        </a>
+    </li>
+</ul>
