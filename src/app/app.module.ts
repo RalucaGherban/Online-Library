@@ -12,6 +12,9 @@ import { CartPageComponent } from './components/pages/cart-page/cart-page.compon
 import { TitleComponent } from './components/partials/title/title.component';
 import { LoginPageComponent } from './components/pages/login-page/login-page.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { InputContainerComponent } from './components/partials/input-container/input-container.component';
+import { InputValidationComponent } from './components/partials/input-validation/input-validation.component';
+import { TextInputComponent } from './components/partials/text-input/text-input.component';
 
 
 @NgModule({
@@ -24,7 +27,10 @@ import { ReactiveFormsModule } from '@angular/forms';
     BookPageComponent,
     CartPageComponent,
     TitleComponent,
-    LoginPageComponent
+    LoginPageComponent,
+    InputContainerComponent,
+    InputValidationComponent,
+    TextInputComponent
   ],
   imports: [
     BrowserModule,
